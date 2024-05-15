@@ -70,3 +70,8 @@ This project implements an AI-driven task management system using principles fro
 - **TaskManager**: Manages tasks with different priority levels and dependencies.
 
 ## File Structure
+"""
+
+if __name__ == "__main__":
+    main()
+
