@@ -1,4 +1,3 @@
-
 class TaskDivisionSystem:
     def divide_task(self, task_component):
         subtasks = self._create_subtasks(task_component)
