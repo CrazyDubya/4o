@@ -1,4 +1,4 @@
-
+#main.py
 import os
 from components import TaskComponent
 from task_generator import TaskGenerationSystem
@@ -6,7 +6,7 @@ from task_divider import TaskDivisionSystem
 from task_integrator import TaskIntegrationSystem
 
 # Ensure output directory exists
-output_dir = "/mnt/data/agentic_task_gen/output/"
+output_dir = "/output/"
 os.makedirs(output_dir, exist_ok=True)
 
 # OpenAI API key
