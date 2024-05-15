@@ -2,6 +2,7 @@ class AgentComponent:
     def __init__(self, agent_id: str):
         self.agent_id = agent_id
 
+
 class AgentManagement:
     def __init__(self):
         self.agents = []

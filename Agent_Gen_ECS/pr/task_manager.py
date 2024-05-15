@@ -1,13 +1,16 @@
-from typing import List, Dict
+from typing import List
+
 
 class TaskComponent:
     def __init__(self, description: str):
         self.description = description
 
+
 class SubTaskComponent:
     def __init__(self, parent_task: TaskComponent, subtasks: List[TaskComponent]):
         self.parent_task = parent_task
         self.subtasks = subtasks
+
 
 class TaskManager:
     def __init__(self):

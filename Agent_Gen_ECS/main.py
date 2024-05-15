@@ -2,13 +2,13 @@ import os
 import json
 from datetime import datetime
 from typing import List, Dict
-from task_generation_system import TaskGenerationSystem
-from subtask_division_system import SubTaskDivisionSystem
-from task_assignment_system import TaskAssignmentSystem
-from result_aggregation_system import ResultAggregationSystem
-from agent_management import AgentManagement
-from task_manager import TaskManager
-from llm import LLM
+from pr.task_generation_system import TaskGenerationSystem
+from pr.subtask_division_system import SubTaskDivisionSystem
+from pr.task_assignment_system import TaskAssignmentSystem
+from pr.result_aggregation_system import ResultAggregationSystem
+from pr.agent_management import AgentManagement
+from pr.task_manager import TaskManager
+from pr.llm import LLM
 
 # Main Execution Flow
 def main():

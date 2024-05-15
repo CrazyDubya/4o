@@ -1,5 +1,7 @@
 from typing import Dict
-from agent_management import AgentComponent
+
+from pr.agent_management import AgentComponent
+
 
 class ResultAggregationSystem:
     def aggregate_results(self, results: Dict[AgentComponent, str]) -> str:

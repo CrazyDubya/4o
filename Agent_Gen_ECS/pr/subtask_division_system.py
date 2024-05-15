@@ -1,10 +1,11 @@
-from llm import LLM
-from task_manager import TaskComponent, SubTaskComponent
+from pr.llm import LLM
+from pr.task_manager import TaskComponent, SubTaskComponent
+
 
 class SubTaskDivisionSystem:
     def __init__(self, llm: LLM):
         self.llm = llm
-    
+
     def divide_task(self, task: TaskComponent) -> SubTaskComponent:
         prompt = f"Divide the task: {task.description}"
         response = self.llm.generate(prompt)
