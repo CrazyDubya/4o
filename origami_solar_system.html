@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origami Solar System</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        #origami { position: absolute; top: 10px; left: 10px; width: 300px; height: 300px; }
+    </style>
+</head>
+<body>
+    <div id="origami"></div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160/build/three.min.js"></script>
+    <script src="rabbit-ear.js"></script>
+    <script>
+// --- Three.js Solar System ---
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({antialias: true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const light = new THREE.PointLight(0xffffff, 2, 0);
+scene.add(light);
+
+const sunGeom = new THREE.SphereGeometry(2, 32, 32);
+const sunMat = new THREE.MeshBasicMaterial({color: 0xFFFF00});
+const sun = new THREE.Mesh(sunGeom, sunMat);
+scene.add(sun);
+
+const planets = [];
+const planetData = [
+  { radius: 0.5, distance: 5, speed: 0.02, color: 0xff0000 },
+  { radius: 0.8, distance: 8, speed: 0.015, color: 0x00ff00 },
+  { radius: 1.0, distance: 11, speed: 0.01, color: 0x0000ff }
+];
+
+planetData.forEach(data => {
+  const geom = new THREE.SphereGeometry(data.radius, 32, 32);
+  const mat = new THREE.MeshPhongMaterial({color: data.color});
+  const mesh = new THREE.Mesh(geom, mat);
+  mesh.userData = { angle: Math.random()*Math.PI*2, distance: data.distance, speed: data.speed };
+  scene.add(mesh);
+  planets.push(mesh);
+});
+
+camera.position.z = 20;
+
+function animate() {
+  requestAnimationFrame(animate);
+  planets.forEach(p => {
+    p.userData.angle += p.userData.speed;
+    p.position.x = Math.cos(p.userData.angle) * p.userData.distance;
+    p.position.z = Math.sin(p.userData.angle) * p.userData.distance;
+  });
+  renderer.render(scene, camera);
+}
+animate();
+
+// --- RabbitEar Origami ---
+const cp = ear.square();
+cp.rotateZ(45 * Math.PI/180);
+cp.fold();
+const svg = ear.svg({ width: 300, height: 300, style: { background: "white" } });
+svg.appendChild(cp.svg());
+document.getElementById("origami").appendChild(svg);
+    </script>
+</body>
+</html>
