@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Sundial</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="controls">
+        <label>Latitude: <input type="number" id="latitude" step="0.0001" value="0"></label>
+        <label>Longitude: <input type="number" id="longitude" step="0.0001" value="0"></label>
+        <button id="setLocation">Set Location</button>
+    </div>
+    <div id="map" class="map"></div>
+    <div class="sundial">
+        <div class="dial">
+            <div class="hand" id="hand"></div>
+            <div class="center"></div>
+        </div>
+        <div id="solarTime" class="time-display"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
