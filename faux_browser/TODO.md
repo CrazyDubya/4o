@@ -8,5 +8,6 @@
 - [x] Implement user profiles to manage allowed domains and time limits
 - [x] Document logging and auditing strategy
 - [x] Capture page screenshots with a headless browser
+- [x] Verify file hashes when serving content
 
 Update this file as tasks are completed to keep the project on track.

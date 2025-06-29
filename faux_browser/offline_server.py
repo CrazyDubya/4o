@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 import argparse
 import json
 import os
+from hashlib import sha256
 
 
 class OfflineHandler(SimpleHTTPRequestHandler):
@@ -17,6 +18,18 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     )
     log_path: Path
     allowed_domains: set[str]
+    manifest: dict[str, dict]
+
+    def _verify_hash(self, file_path: Path) -> bool:
+        rel = str(file_path.relative_to(Path.cwd()))
+        entry = self.manifest.get(rel)
+        if not entry:
+            return True
+        h = sha256()
+        with file_path.open('rb') as fh:
+            for chunk in iter(lambda: fh.read(8192), b''):
+                h.update(chunk)
+        return h.hexdigest() == entry.get('sha256')
 
     def _log_access(self) -> None:
         timestamp = datetime.now(timezone.utc).isoformat()
@@ -31,7 +44,13 @@ class OfflineHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Access denied")
         elif Path(path).exists():
-            super().do_GET()
+            file_ok = self._verify_hash(Path(path))
+            if not file_ok:
+                self.send_response(500)
+                self.end_headers()
+                self.wfile.write(b"Checksum mismatch")
+            else:
+                super().do_GET()
         else:
             self.send_response(200)
             self.send_header("Content-type", "text/html; charset=utf-8")
@@ -46,6 +65,7 @@ def main() -> None:
     parser.add_argument("--repo", default="repository", help="Path to local repository")
     parser.add_argument("--port", type=int, default=8000, help="Port to serve on")
     parser.add_argument("--profile", default="profiles/default.json", help="User profile JSON")
+    parser.add_argument("--verify", action="store_true", help="Verify file hashes from manifest")
     args = parser.parse_args()
 
     repo_path = Path(args.repo).resolve()
@@ -55,6 +75,12 @@ def main() -> None:
     log_dir = repo_path / "metadata"
     log_dir.mkdir(parents=True, exist_ok=True)
     OfflineHandler.log_path = log_dir / "server_access.log"
+
+    manifest_path = repo_path / "manifest.json"
+    if args.verify and manifest_path.exists():
+        OfflineHandler.manifest = json.loads(manifest_path.read_text())
+    else:
+        OfflineHandler.manifest = {}
 
     profile_path = Path(args.profile)
     if profile_path.exists():

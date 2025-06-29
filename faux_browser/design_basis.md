@@ -78,4 +78,5 @@ A service worker can intercept all requests from the faux browser and serve file
 1. Fetcher downloads new snapshots on a schedule (daily or weekly).
 2. Updates replace old versions atomically so that the browser never sees a partially written state.
 3. The manifest includes hashes so the browser can verify integrity before displaying pages.
+4. The offline server can check file hashes against the manifest when requested.
 

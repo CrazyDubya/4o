@@ -103,6 +103,8 @@ view the sample page.
 If a requested file cannot be found, the server now returns a simple HTML
 placeholder instead of an error. This keeps navigation smooth and will later
 allow AI helpers to fill in missing content.
+Pass `--verify` to have the server check each file's SHA-256 against
+`manifest.json`. If the hash does not match, a 500 error is returned.
 All requests are logged to `repository/metadata/server_access.log` for auditing.
 ## Screenshot Fetcher
 
@@ -156,4 +158,5 @@ See [auditing.md](auditing.md) for details.
 - sanitize pages (done) and insert AI placeholders when needed
 - create a simple Electron client bound to the offline server (done)
 - add profile-based access controls and auditing (done)
+- verify file hashes when serving (done)
 

@@ -15,6 +15,7 @@ This document outlines how the faux browser components record activity for later
   `repository/metadata/server_access.log` with an ISO timestamp and the path
   requested.
 - Missing pages are also logged so you can identify gaps in the repository.
+- When run with `--verify`, the server checks file hashes and notes mismatches.
 
 These logs provide an audit trail showing what content was fetched and which
 pages users attempted to view. They can be rotated or archived periodically to

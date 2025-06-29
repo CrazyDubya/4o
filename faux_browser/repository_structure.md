@@ -22,5 +22,6 @@ electron_frontend/    # Minimal Electron client
 - **pages/** holds directories for each domain with sanitized HTML and assets.
 - **metadata/** contains logs produced by the fetcher for audit and troubleshooting.
 - **profiles/** stores JSON files listing allowed domains and time limits for each user.
+- The offline server can optionally verify each file against `manifest.json` when serving content.
 
 Keeping a clear structure makes it easy for the offline server and browser to resolve requests without contacting the real Internet.
