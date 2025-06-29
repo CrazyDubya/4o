@@ -12,13 +12,18 @@ Example file `profiles/default.json`:
 }
 ```
 
-`soft_allow_domains` contains sites that are only accessible with approval.
-The server returns a message instead of content when these domains are
-requested.
+`soft_allow_domains` contains sites that are only accessible with approval. The server returns a message instead of content when these domains are requested.
 
-Start the server with the profile. The server shuts down requests once the
-configured time limit is reached:
+Start the server with a profile and it will stop serving once the time limit is reached:
 
 ```bash
 python offline_server.py --profile profiles/default.json
 ```
+
+Several fully defined example profiles live in the same directory:
+
+- `kids.json` – safe browsing for children
+- `research.json` – reference-focused garden for students or professionals
+- `library.json` – curated sites for public terminals
+
+Use any of these files with the `--profile` option to try different domain sets.

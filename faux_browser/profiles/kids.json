@@ -1,0 +1,14 @@
+{
+  "allowed_domains": [
+    "kids.nationalgeographic.com",
+    "pbskids.org",
+    "khanacademy.org",
+    "www.coolmathgames.com"
+  ],
+  "soft_allow_domains": [
+    "www.youtube.com",
+    "en.wikipedia.org",
+    "code.org"
+  ],
+  "time_limit_minutes": 60
+}

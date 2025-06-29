@@ -1,0 +1,14 @@
+{
+  "allowed_domains": [
+    "arxiv.org",
+    "doi.org",
+    "www.wikipedia.org",
+    "www.python.org",
+    "docs.python.org"
+  ],
+  "soft_allow_domains": [
+    "news.ycombinator.com",
+    "github.com"
+  ],
+  "time_limit_minutes": 180
+}

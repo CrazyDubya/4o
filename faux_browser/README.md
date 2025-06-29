@@ -127,8 +127,9 @@ permissions and a time limit:
 python offline_server.py --profile profiles/default.json
 ```
 
-See [user_profiles.md](user_profiles.md) for details.
-For ideas on tailoring domain lists for different audiences, check
+See [user_profiles.md](user_profiles.md) for details. The `profiles/` directory
+contains several ready-made examples such as `kids.json`, `research.json`, and
+`library.json`. For a deeper explanation of these domain lists, check
 [walled_gardens.md](walled_gardens.md).
 
 ## Electron Client
@@ -165,4 +166,5 @@ See [auditing.md](auditing.md) for details.
 - add profile-based access controls and auditing (done)
 - verify file hashes when serving (done)
 - enforce session time limits from profile (done)
+- expand profiles with soft-allow domains (done)
 

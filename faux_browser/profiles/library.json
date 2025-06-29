@@ -1,0 +1,13 @@
+{
+  "allowed_domains": [
+    "www.local-library.gov",
+    "openlibrary.org",
+    "archive.org",
+    "gutenberg.org"
+  ],
+  "soft_allow_domains": [
+    "www.nytimes.com",
+    "www.wikipedia.org"
+  ],
+  "time_limit_minutes": 90
+}
