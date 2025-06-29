@@ -1,0 +1,62 @@
+# Faux Browser System Design Basis
+
+This document expands on the conceptual plan by outlining the key components and their responsibilities. The goal is to provide enough detail to begin prototyping.
+
+## Components
+
+1. **Content Fetcher (Intermediary)**
+   - Runs on a server with controlled internet access.
+   - Downloads whitelisted pages using a headless browser or scraper.
+   - Sanitizes HTML by removing scripts, forms, and external links.
+   - Stores content in the local repository with timestamps.
+   - Generates a manifest that maps URLs to cached files and indicates freshness.
+
+2. **Local Repository**
+   - Directory tree containing sanitized HTML, images, and media assets.
+   - Includes the manifest produced by the fetcher.
+   - Versioned so that old snapshots can be rolled back if necessary.
+
+3. **Offline Content Server**
+   - Lightweight HTTP server that serves files from the local repository.
+   - Provides an API to query the manifest and request pages.
+   - Injects AI-generated placeholders when content is missing.
+
+4. **Faux Browser Client**
+   - Desktop or mobile application using WebView/Electron.
+   - Locks network requests to the offline server only.
+   - Presents a minimal UI (address bar, history, back/forward).
+
+5. **User Management**
+   - Profiles define accessible domains and time limits.
+   - Activity logs stored locally and optionally synced to a monitoring system.
+   - Parental or administrative controls adjust allowed sites.
+
+6. **AI Assistance**
+   - Local language model fills gaps in scraped pages.
+   - Summarizes or explains external links that cannot be fetched.
+   - Can generate child-friendly or simplified versions of text.
+
+## Data Flow
+
+```mermaid
+graph TD
+    A[Content Fetcher] --> B[Local Repository]
+    B --> C[Offline Server]
+    C --> D[Faux Browser]
+    D -->|Requests| C
+    C -->|Updates| D
+```
+
+1. The fetcher runs on a schedule, populating the repository.
+2. The offline server serves pages from the repository.
+3. The faux browser requests pages via the offline server only.
+4. AI helpers step in when pages are stale or incomplete.
+
+## Prototype Plan
+
+1. **Build a CLI fetcher** that downloads a handful of pages and produces the manifest.
+2. **Write a small Flask or Node server** that serves the repository over HTTP.
+3. **Create an Electron shell** that locks all requests to `http://localhost:PORT`.
+4. **Implement basic profiles** with a JSON configuration listing allowed domains.
+
+By following this design basis, the project can evolve from a conceptual idea to a working prototype while maintaining a strict separation from the real Internet.
