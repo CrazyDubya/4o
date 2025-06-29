@@ -60,3 +60,19 @@ graph TD
 4. **Implement basic profiles** with a JSON configuration listing allowed domains.
 
 By following this design basis, the project can evolve from a conceptual idea to a working prototype while maintaining a strict separation from the real Internet.
+
+## Security Considerations
+
+- **Isolated Networking**: the offline server should be on a private subnet with no direct outbound access. Only the fetcher machine can connect to the real Internet.
+- **Content Sanitization**: remove JavaScript that tries to fetch external resources. Filter forms or URLs that may leak data.
+- **Update Auditing**: the fetcher logs every download along with checksums. Manual review ensures no unexpected domains were contacted.
+
+## Offline-First Rendering
+
+A service worker can intercept all requests from the faux browser and serve files from the repository. If a file is missing, the service worker falls back to an AI-generated placeholder. This approach mirrors common progressive web app strategies for offline capability.
+
+## Update Process
+
+1. Fetcher downloads new snapshots on a schedule (daily or weekly).
+2. Updates replace old versions atomically so that the browser never sees a partially written state.
+3. The manifest includes hashes so the browser can verify integrity before displaying pages.

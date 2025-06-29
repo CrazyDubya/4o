@@ -55,3 +55,17 @@ This directory outlines an early conceptual plan for a "faux" web browser. The g
 4. Explore offline language models for filling missing text or generating explanations.
 
 This plan is intentionally high-level. The goal is to demonstrate how a limited subset of the web could be served without exposing users directly to the wider Internet.
+
+## Service Worker Strategy
+
+The faux browser can register a service worker that intercepts all navigation requests. The worker checks the local repository first and falls back to an AI-generated response when needed. This keeps the browsing experience seamless even when pages are partially missing.
+
+## Example Fetch Command
+
+The content fetcher might use a command such as:
+
+```bash
+python fetcher.py --sites whitelist.txt --output repository/
+```
+
+Where `whitelist.txt` lists the allowed domains. Each run updates the manifest and fetch log for audit.

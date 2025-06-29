@@ -25,3 +25,10 @@
    - AI components can synthesize or summarize content when required.
 
 This layout ensures that the user never directly contacts the Internet, yet can view a curated snapshot of it.
+
+4. **Service Worker Layer**
+   - The faux browser registers a service worker that intercepts every request.
+   - It serves files from the local repository and injects AI-generated placeholders for missing content.
+
+5. **Audit Trail**
+   - All fetcher activities and user navigation events are logged for review.
