@@ -69,3 +69,18 @@ python fetcher.py --sites whitelist.txt --output repository/
 ```
 
 Where `whitelist.txt` lists the allowed domains. Each run updates the manifest and fetch log for audit.
+
+## Mini Garden Proof of Concept
+
+To collect a small sample set of pages without accessing the wider Internet,
+use the provided helper script:
+
+```bash
+./mini_garden_fetch.sh
+```
+
+The script fetches `example.com` and IANA's example domain page via `curl`. The
+files are stored under `repository/pages/` and a simple log is written to
+`repository/metadata/fetch_log.txt`. Because the repository directory is listed
+in `.gitignore`, these fetched files are not tracked by Git and can be
+regenerated at any time.
