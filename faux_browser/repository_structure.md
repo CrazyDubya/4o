@@ -14,7 +14,7 @@ repository/
     fetch_log.json     # Records timestamps and fetch status
 ```
 
-- **manifest.json** lists each allowed URL, the local path of the cached copy, and when it was fetched.
+- **manifest.json** lists each allowed URL, the local path of the cached copy, the SHA-256 hash, and when it was fetched.
 - **pages/** holds directories for each domain with sanitized HTML and assets.
 - **metadata/** contains logs produced by the fetcher for audit and troubleshooting.
 

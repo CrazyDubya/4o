@@ -1,7 +1,7 @@
 # Development Checklist
 
 - [x] Replace `fetcher_sketch.py` with a CLI `fetcher.py` that reads a whitelist
-- [ ] Generate `manifest.json` mapping URLs to cached files and hashes
+- [x] Generate `manifest.json` mapping URLs to cached files and hashes
 - [ ] Sanitize HTML to strip scripts and external forms
 - [ ] Enhance `offline_server.py` to inject AI placeholders for missing content
 - [ ] Build a basic Electron front-end limited to the offline server
