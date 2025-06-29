@@ -2,7 +2,7 @@
 
 - [x] Replace `fetcher_sketch.py` with a CLI `fetcher.py` that reads a whitelist
 - [x] Generate `manifest.json` mapping URLs to cached files and hashes
-- [ ] Sanitize HTML to strip scripts and external forms
+- [x] Sanitize HTML to strip scripts and external forms
 - [ ] Enhance `offline_server.py` to inject AI placeholders for missing content
 - [ ] Build a basic Electron front-end limited to the offline server
 - [ ] Implement user profiles to manage allowed domains and time limits

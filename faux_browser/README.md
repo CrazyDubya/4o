@@ -70,7 +70,8 @@ python fetcher.py --sites whitelist.txt --output repository/
 ```
 
 `whitelist.txt` lists the allowed domains. Each run stores the downloaded files
-and updates `manifest.json` with the local paths and SHA-256 hashes.
+and updates `manifest.json` with the local paths and SHA-256 hashes. The HTML is
+sanitized to strip scripts and forms before being written to disk.
 
 ## Mini Garden Proof of Concept
 
@@ -113,7 +114,7 @@ Screenshots are saved under `repository/screenshots/`.
 
 - use the new `fetcher.py` CLI to populate the repository
 - generate `manifest.json` with hashes for each file (done)
-- sanitize pages and insert AI placeholders when needed
+- sanitize pages (done) and insert AI placeholders when needed
 - create a simple Electron client bound to the offline server
 - add profile-based access controls and auditing
 

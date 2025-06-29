@@ -9,6 +9,7 @@ from hashlib import sha256
 from pathlib import Path
 from datetime import datetime, timezone
 import requests
+from bs4 import BeautifulSoup
 
 
 def read_sites(path: Path) -> list[str]:
@@ -16,8 +17,16 @@ def read_sites(path: Path) -> list[str]:
 
 
 def sanitize_html(html: str) -> str:
-    """Placeholder for HTML sanitization."""
-    return html
+    """Strip scripts, forms, and event handlers."""
+    soup = BeautifulSoup(html, "html.parser")
+    for tag in soup(["script", "form", "iframe"]):
+        tag.decompose()
+    for tag in soup.find_all(True):
+        attrs = dict(tag.attrs)
+        for attr in list(attrs):
+            if attr.lower().startswith("on"):
+                del tag.attrs[attr]
+    return str(soup)
 
 
 def file_hash(path: Path) -> str:
