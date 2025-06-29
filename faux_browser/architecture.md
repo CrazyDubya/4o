@@ -19,16 +19,21 @@
    - Directory tree with sanitized HTML, images, and other assets.
    - Indexed for quick retrieval by the faux browser.
 
-3. **Faux Browser**
-   - A simple UI (e.g. Electron app) that only points to the local repository.
+3. **Offline Server**
+   - Small HTTP server that exposes the repository over `localhost`.
+   - Used by the browser to fetch sanitized pages.
+
+4. **Faux Browser**
+   - A simple UI (e.g. Electron app) that only points to the offline server.
    - Blocks external URLs at the network level.
    - AI components can synthesize or summarize content when required.
 
 This layout ensures that the user never directly contacts the Internet, yet can view a curated snapshot of it.
 
-4. **Service Worker Layer**
+5. **Service Worker Layer**
    - The faux browser registers a service worker that intercepts every request.
    - It serves files from the local repository and injects AI-generated placeholders for missing content.
 
-5. **Audit Trail**
+6. **Audit Trail**
    - All fetcher activities and user navigation events are logged for review.
+

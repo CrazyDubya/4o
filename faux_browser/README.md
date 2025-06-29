@@ -84,3 +84,17 @@ files are stored under `repository/pages/` and a simple log is written to
 `repository/metadata/fetch_log.txt`. Because the repository directory is listed
 in `.gitignore`, these fetched files are not tracked by Git and can be
 regenerated at any time.
+
+## Local Offline Server
+
+Once pages have been fetched, you can serve them locally using a small
+HTTP server:
+
+```bash
+python offline_server.py --repo repository --port 8000
+```
+
+This starts a server at `http://localhost:8000/` that hosts the cached
+content. Open `http://localhost:8000/pages/example.com/` in your browser to
+view the sample page.
+

@@ -20,6 +20,7 @@ This document expands on the conceptual plan by outlining the key components and
    - Lightweight HTTP server that serves files from the local repository.
    - Provides an API to query the manifest and request pages.
    - Injects AI-generated placeholders when content is missing.
+   - The prototype `offline_server.py` demonstrates this component.
 
 4. **Faux Browser Client**
    - Desktop or mobile application using WebView/Electron.
@@ -76,3 +77,4 @@ A service worker can intercept all requests from the faux browser and serve file
 1. Fetcher downloads new snapshots on a schedule (daily or weekly).
 2. Updates replace old versions atomically so that the browser never sees a partially written state.
 3. The manifest includes hashes so the browser can verify integrity before displaying pages.
+
