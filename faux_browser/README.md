@@ -62,13 +62,15 @@ The faux browser can register a service worker that intercepts all navigation re
 
 ## Example Fetch Command
 
-The content fetcher might use a command such as:
+The project provides a small CLI fetcher. Give it a text file of URLs and an
+output directory:
 
 ```bash
 python fetcher.py --sites whitelist.txt --output repository/
 ```
 
-Where `whitelist.txt` lists the allowed domains. Each run updates the manifest and fetch log for audit.
+`whitelist.txt` lists the allowed domains. Each run stores the downloaded files
+and records the fetch in the repository metadata.
 
 ## Mini Garden Proof of Concept
 
@@ -109,9 +111,7 @@ Screenshots are saved under `repository/screenshots/`.
 
 ## Ongoing Checklist
 
-Development tasks are tracked in [TODO.md](TODO.md). The main goals are to:
-
-- turn the fetcher sketch into a proper CLI
+- use the new `fetcher.py` CLI to populate the repository
 - generate `manifest.json` with hashes for each file
 - sanitize pages and insert AI placeholders when needed
 - create a simple Electron client bound to the offline server
