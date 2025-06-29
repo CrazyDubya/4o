@@ -11,7 +11,8 @@ Example file `profiles/default.json`:
 }
 ```
 
-Start the server with the profile:
+Start the server with the profile. The server shuts down requests once the
+configured time limit is reached:
 
 ```bash
 python offline_server.py --profile profiles/default.json

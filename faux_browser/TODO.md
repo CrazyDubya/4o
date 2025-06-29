@@ -9,5 +9,6 @@
 - [x] Document logging and auditing strategy
 - [x] Capture page screenshots with a headless browser
 - [x] Verify file hashes when serving content
+- [x] Enforce session time limits from user profiles
 
 Update this file as tasks are completed to keep the project on track.

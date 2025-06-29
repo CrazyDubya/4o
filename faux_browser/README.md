@@ -105,6 +105,8 @@ placeholder instead of an error. This keeps navigation smooth and will later
 allow AI helpers to fill in missing content.
 Pass `--verify` to have the server check each file's SHA-256 against
 `manifest.json`. If the hash does not match, a 500 error is returned.
+The server also tracks how long it has been running and stops responding once
+the user's configured time limit elapses.
 All requests are logged to `repository/metadata/server_access.log` for auditing.
 ## Screenshot Fetcher
 
@@ -117,8 +119,9 @@ Screenshots are saved under `repository/screenshots/`.
 
 ## User Profiles
 
-The offline server can enforce a profile of allowed domains. Start the server
-with a JSON file defining permissions:
+The offline server can enforce a profile of allowed domains and session
+duration. Start the server with a JSON file defining permissions and a time
+limit:
 
 ```bash
 python offline_server.py --profile profiles/default.json
@@ -159,4 +162,5 @@ See [auditing.md](auditing.md) for details.
 - create a simple Electron client bound to the offline server (done)
 - add profile-based access controls and auditing (done)
 - verify file hashes when serving (done)
+- enforce session time limits from profile (done)
 

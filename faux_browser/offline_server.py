@@ -19,6 +19,8 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     log_path: Path
     allowed_domains: set[str]
     manifest: dict[str, dict]
+    session_limit: int | None
+    session_start: datetime
 
     def _verify_hash(self, file_path: Path) -> bool:
         rel = str(file_path.relative_to(Path.cwd()))
@@ -37,6 +39,15 @@ class OfflineHandler(SimpleHTTPRequestHandler):
             log.write(f"{timestamp} {self.path}\n")
 
     def do_GET(self):
+        if self.session_limit is not None:
+            now = datetime.now(timezone.utc)
+            elapsed = (now - self.session_start).total_seconds() / 60
+            if elapsed > self.session_limit:
+                self.send_response(403)
+                self.end_headers()
+                self.wfile.write(b"Time limit exceeded")
+                self._log_access()
+                return
         path = self.translate_path(self.path)
         domain = Path(self.path).parts[1] if self.path.startswith('/pages/') and len(Path(self.path).parts) > 1 else ''
         if domain and domain not in self.allowed_domains:
@@ -86,8 +97,11 @@ def main() -> None:
     if profile_path.exists():
         profile = json.loads(profile_path.read_text())
         OfflineHandler.allowed_domains = set(profile.get("allowed_domains", []))
+        OfflineHandler.session_limit = profile.get("time_limit_minutes")
     else:
         OfflineHandler.allowed_domains = set()
+        OfflineHandler.session_limit = None
+    OfflineHandler.session_start = datetime.now(timezone.utc)
 
     os.chdir(repo_path)
     httpd = HTTPServer(("localhost", args.port), OfflineHandler)
