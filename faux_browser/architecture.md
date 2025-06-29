@@ -27,6 +27,7 @@
    - A simple UI (e.g. Electron app) that only points to the offline server.
    - Blocks external URLs at the network level.
    - AI components can synthesize or summarize content when required.
+   - User profiles restrict accessible domains.
 
 This layout ensures that the user never directly contacts the Internet, yet can view a curated snapshot of it.
 

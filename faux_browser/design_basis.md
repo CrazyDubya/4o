@@ -29,6 +29,7 @@ This document expands on the conceptual plan by outlining the key components and
 
 5. **User Management**
    - Profiles define accessible domains and time limits.
+   - Offline server reads the selected profile at startup.
    - Activity logs stored locally and optionally synced to a monitoring system.
    - Parental or administrative controls adjust allowed sites.
 

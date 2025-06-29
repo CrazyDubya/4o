@@ -4,6 +4,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from datetime import datetime, timezone
 import argparse
+import json
 import os
 
 
@@ -15,6 +16,7 @@ class OfflineHandler(SimpleHTTPRequestHandler):
         "<p>No cached copy for {path}</p></body></html>"
     )
     log_path: Path
+    allowed_domains: set[str]
 
     def _log_access(self) -> None:
         timestamp = datetime.now(timezone.utc).isoformat()
@@ -23,7 +25,12 @@ class OfflineHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self.translate_path(self.path)
-        if Path(path).exists():
+        domain = Path(self.path).parts[1] if self.path.startswith('/pages/') and len(Path(self.path).parts) > 1 else ''
+        if domain and domain not in self.allowed_domains:
+            self.send_response(403)
+            self.end_headers()
+            self.wfile.write(b"Access denied")
+        elif Path(path).exists():
             super().do_GET()
         else:
             self.send_response(200)
@@ -38,6 +45,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Serve cached pages from repository")
     parser.add_argument("--repo", default="repository", help="Path to local repository")
     parser.add_argument("--port", type=int, default=8000, help="Port to serve on")
+    parser.add_argument("--profile", default="profiles/default.json", help="User profile JSON")
     args = parser.parse_args()
 
     repo_path = Path(args.repo).resolve()
@@ -47,6 +55,13 @@ def main() -> None:
     log_dir = repo_path / "metadata"
     log_dir.mkdir(parents=True, exist_ok=True)
     OfflineHandler.log_path = log_dir / "server_access.log"
+
+    profile_path = Path(args.profile)
+    if profile_path.exists():
+        profile = json.loads(profile_path.read_text())
+        OfflineHandler.allowed_domains = set(profile.get("allowed_domains", []))
+    else:
+        OfflineHandler.allowed_domains = set()
 
     os.chdir(repo_path)
     httpd = HTTPServer(("localhost", args.port), OfflineHandler)

@@ -113,6 +113,17 @@ python screenshot_fetcher.py
 ```
 Screenshots are saved under `repository/screenshots/`.
 
+## User Profiles
+
+The offline server can enforce a profile of allowed domains. Start the server
+with a JSON file defining permissions:
+
+```bash
+python offline_server.py --profile profiles/default.json
+```
+
+See [user_profiles.md](user_profiles.md) for details.
+
 
 ## Logging and Auditing
 
@@ -130,5 +141,5 @@ See [auditing.md](auditing.md) for details.
 - generate `manifest.json` with hashes for each file (done)
 - sanitize pages (done) and insert AI placeholders when needed
 - create a simple Electron client bound to the offline server
-- add profile-based access controls and auditing
+- add profile-based access controls and auditing (done)
 

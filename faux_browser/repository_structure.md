@@ -13,10 +13,13 @@ repository/
   metadata/
     fetch_log.json     # Records timestamps and fetch status
     server_access.log  # HTTP requests served by the offline server
+  profiles/
+    default.json       # Example user profile
 ```
 
 - **manifest.json** lists each allowed URL, the local path of the cached copy, the SHA-256 hash, and when it was fetched.
 - **pages/** holds directories for each domain with sanitized HTML and assets.
 - **metadata/** contains logs produced by the fetcher for audit and troubleshooting.
+- **profiles/** stores JSON files listing allowed domains and time limits for each user.
 
 Keeping a clear structure makes it easy for the offline server and browser to resolve requests without contacting the real Internet.
