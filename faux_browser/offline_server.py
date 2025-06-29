@@ -18,6 +18,7 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     )
     log_path: Path
     allowed_domains: set[str]
+    soft_allow_domains: set[str]
     manifest: dict[str, dict]
     session_limit: int | None
     session_start: datetime
@@ -53,7 +54,10 @@ class OfflineHandler(SimpleHTTPRequestHandler):
         if domain and domain not in self.allowed_domains:
             self.send_response(403)
             self.end_headers()
-            self.wfile.write(b"Access denied")
+            if domain in self.soft_allow_domains:
+                self.wfile.write(b"Approval required")
+            else:
+                self.wfile.write(b"Access denied")
         elif Path(path).exists():
             file_ok = self._verify_hash(Path(path))
             if not file_ok:
@@ -97,9 +101,11 @@ def main() -> None:
     if profile_path.exists():
         profile = json.loads(profile_path.read_text())
         OfflineHandler.allowed_domains = set(profile.get("allowed_domains", []))
+        OfflineHandler.soft_allow_domains = set(profile.get("soft_allow_domains", []))
         OfflineHandler.session_limit = profile.get("time_limit_minutes")
     else:
         OfflineHandler.allowed_domains = set()
+        OfflineHandler.soft_allow_domains = set()
         OfflineHandler.session_limit = None
     OfflineHandler.session_start = datetime.now(timezone.utc)
 

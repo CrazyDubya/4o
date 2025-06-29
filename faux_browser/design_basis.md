@@ -28,9 +28,11 @@ This document expands on the conceptual plan by outlining the key components and
    - Presents a minimal UI (address bar, history, back/forward).
 
 5. **User Management**
-   - Profiles define accessible domains and time limits.
+   - Profiles define accessible domains, soft-allow domains, and time limits.
    - Offline server reads the selected profile at startup and stops serving
      requests once the time limit is reached.
+   - Attempts to access soft-allow domains return an approval message and are
+     logged for review.
    - Activity logs stored locally and optionally synced to a monitoring system.
    - Parental or administrative controls adjust allowed sites.
 

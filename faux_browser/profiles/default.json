@@ -1,4 +1,5 @@
 {
   "allowed_domains": ["example.com"],
+  "soft_allow_domains": ["www.iana.org"],
   "time_limit_minutes": 30
 }

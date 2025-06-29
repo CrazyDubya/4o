@@ -119,15 +119,17 @@ Screenshots are saved under `repository/screenshots/`.
 
 ## User Profiles
 
-The offline server can enforce a profile of allowed domains and session
-duration. Start the server with a JSON file defining permissions and a time
-limit:
+The offline server can enforce a profile of allowed domains, soft-permissive
+domains, and session duration. Start the server with a JSON file defining
+permissions and a time limit:
 
 ```bash
 python offline_server.py --profile profiles/default.json
 ```
 
 See [user_profiles.md](user_profiles.md) for details.
+For ideas on tailoring domain lists for different audiences, check
+[walled_gardens.md](walled_gardens.md).
 
 ## Electron Client
 

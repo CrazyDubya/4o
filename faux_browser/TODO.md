@@ -10,5 +10,6 @@
 - [x] Capture page screenshots with a headless browser
 - [x] Verify file hashes when serving content
 - [x] Enforce session time limits from user profiles
+- [ ] Expand profiles with soft-allow domains for optional approval
 
 Update this file as tasks are completed to keep the project on track.
