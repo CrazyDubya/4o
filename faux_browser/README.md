@@ -98,3 +98,13 @@ This starts a server at `http://localhost:8000/` that hosts the cached
 content. Open `http://localhost:8000/pages/example.com/` in your browser to
 view the sample page.
 
+## Ongoing Checklist
+
+Development tasks are tracked in [TODO.md](TODO.md). The main goals are to:
+
+- turn the fetcher sketch into a proper CLI
+- generate `manifest.json` with hashes for each file
+- sanitize pages and insert AI placeholders when needed
+- create a simple Electron client bound to the offline server
+- add profile-based access controls and auditing
+
