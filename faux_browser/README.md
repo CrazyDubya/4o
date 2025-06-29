@@ -103,6 +103,7 @@ view the sample page.
 If a requested file cannot be found, the server now returns a simple HTML
 placeholder instead of an error. This keeps navigation smooth and will later
 allow AI helpers to fill in missing content.
+All requests are logged to `repository/metadata/server_access.log` for auditing.
 ## Screenshot Fetcher
 
 The optional `screenshot_fetcher.py` script uses `pyppeteer` to capture images of the sample domains.
@@ -111,6 +112,16 @@ Run:
 python screenshot_fetcher.py
 ```
 Screenshots are saved under `repository/screenshots/`.
+
+
+## Logging and Auditing
+
+Activity logs live under `repository/metadata/`:
+
+- `fetch_log.txt` records when pages were downloaded.
+- `server_access.log` stores every offline server request.
+
+See [auditing.md](auditing.md) for details.
 
 
 ## Ongoing Checklist
