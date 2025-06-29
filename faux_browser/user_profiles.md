@@ -20,7 +20,8 @@ Start the server with a profile and it will stop serving once the time limit is 
 python offline_server.py --profile profiles/default.json
 ```
 
-Several fully defined example profiles live in the same directory:
+Several fully defined example profiles live in the same directory. Each contains
+an expanded set of allowed and soft-allow domains:
 
 - `kids.json` – safe browsing for children
 - `research.json` – reference-focused garden for students or professionals

@@ -129,7 +129,8 @@ python offline_server.py --profile profiles/default.json
 
 See [user_profiles.md](user_profiles.md) for details. The `profiles/` directory
 contains several ready-made examples such as `kids.json`, `research.json`, and
-`library.json`. For a deeper explanation of these domain lists, check
+`library.json`. These profiles now include more comprehensive domain lists.
+For a deeper explanation of the curated sites, check
 [walled_gardens.md](walled_gardens.md).
 
 ## Electron Client

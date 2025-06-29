@@ -18,10 +18,18 @@ A safe browsing environment for young users.
   - `pbskids.org`
   - `khanacademy.org`
   - `www.coolmathgames.com`
+  - `funbrain.com`
+  - `starfall.com`
+  - `www.sesamestreet.org`
+  - `www.nickjr.com`
+  - `nasa.gov`
+  - `disneyjunior.com`
 - `soft_allow_domains` require a parent's approval:
   - `www.youtube.com`
   - `en.wikipedia.org`
   - `code.org`
+  - `scratch.mit.edu`
+  - `www.google.com`
 - `time_limit_minutes`: `60`
 
 ### Research Garden (`profiles/research.json`)
@@ -33,9 +41,17 @@ Designed for students or researchers who need reference material.
   - `www.wikipedia.org`
   - `www.python.org`
   - `docs.python.org`
+  - `scholar.google.com`
+  - `www.jstor.org`
+  - `openreview.net`
+  - `www.nature.com`
+  - `www.sciencedirect.com`
 - `soft_allow_domains`:
   - `news.ycombinator.com`
   - `github.com`
+  - `medium.com`
+  - `stackoverflow.com`
+  - `reddit.com`
 - `time_limit_minutes`: `180`
 
 ### Library Garden (`profiles/library.json`)
@@ -46,9 +62,18 @@ For shared devices in a community space such as a public library.
   - `openlibrary.org`
   - `archive.org`
   - `gutenberg.org`
+  - `smithsonianmag.com`
+  - `bbc.com`
+  - `www.loc.gov`
+  - `www.nationalgeographic.com`
+  - `ed.gov`
+  - `history.com`
 - `soft_allow_domains`:
   - `www.nytimes.com`
   - `www.wikipedia.org`
+  - `www.youtube.com`
+  - `twitter.com`
+  - `www.facebook.com`
 - `time_limit_minutes`: `90`
 
-Each of these gardens illustrates how the faux browser can be tailored for different audiences. The lists are intentionally conservative and can be expanded as needed. When the offline server starts with one of these profile files, it enforces the domain rules and logs any attempts to visit soft-allow or blocked sites.
+Each of these gardens illustrates how the faux browser can be tailored for different audiences. The lists remain intentionally conservative and can be expanded as needed. When the offline server starts with one of these profile files, it enforces the domain rules and logs any attempts to visit soft-allow or blocked sites.

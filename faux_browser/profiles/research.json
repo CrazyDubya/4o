@@ -4,11 +4,19 @@
     "doi.org",
     "www.wikipedia.org",
     "www.python.org",
-    "docs.python.org"
+    "docs.python.org",
+    "scholar.google.com",
+    "www.jstor.org",
+    "openreview.net",
+    "www.nature.com",
+    "www.sciencedirect.com"
   ],
   "soft_allow_domains": [
     "news.ycombinator.com",
-    "github.com"
+    "github.com",
+    "medium.com",
+    "stackoverflow.com",
+    "reddit.com"
   ],
   "time_limit_minutes": 180
 }
