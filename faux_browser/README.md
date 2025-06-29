@@ -100,6 +100,9 @@ python offline_server.py --repo repository --port 8000
 This starts a server at `http://localhost:8000/` that hosts the cached
 content. Open `http://localhost:8000/pages/example.com/` in your browser to
 view the sample page.
+If a requested file cannot be found, the server now returns a simple HTML
+placeholder instead of an error. This keeps navigation smooth and will later
+allow AI helpers to fill in missing content.
 ## Screenshot Fetcher
 
 The optional `screenshot_fetcher.py` script uses `pyppeteer` to capture images of the sample domains.
