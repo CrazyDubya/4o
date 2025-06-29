@@ -51,7 +51,7 @@ This directory outlines an early conceptual plan for a "faux" web browser. The g
 
 1. Prototype the content fetcher with a small set of websites.
 2. Build a simple static server to host the cached pages.
-3. Implement a basic Electron client that loads pages from the static server.
+3. Implement a basic Electron client that loads pages from the static server (done).
 4. Explore offline language models for filling missing text or generating explanations.
 
 This plan is intentionally high-level. The goal is to demonstrate how a limited subset of the web could be served without exposing users directly to the wider Internet.
@@ -124,6 +124,20 @@ python offline_server.py --profile profiles/default.json
 
 See [user_profiles.md](user_profiles.md) for details.
 
+## Electron Client
+
+A small Electron application can display the cached pages in a locked-down
+window. Install dependencies and start it from the `electron_frontend` directory:
+
+```bash
+cd electron_frontend
+npm install
+npm start
+```
+
+The client simply loads `http://localhost:8000/` and exposes minimal navigation
+controls.
+
 
 ## Logging and Auditing
 
@@ -140,6 +154,6 @@ See [auditing.md](auditing.md) for details.
 - use the new `fetcher.py` CLI to populate the repository
 - generate `manifest.json` with hashes for each file (done)
 - sanitize pages (done) and insert AI placeholders when needed
-- create a simple Electron client bound to the offline server
+- create a simple Electron client bound to the offline server (done)
 - add profile-based access controls and auditing (done)
 

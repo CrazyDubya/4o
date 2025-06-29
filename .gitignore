@@ -162,3 +162,4 @@ cython_debug/
 # Faux browser fetched content
 faux_browser/repository/
 
+faux_browser/electron_frontend/node_modules/

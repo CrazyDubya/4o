@@ -15,6 +15,7 @@ repository/
     server_access.log  # HTTP requests served by the offline server
   profiles/
     default.json       # Example user profile
+electron_frontend/    # Minimal Electron client
 ```
 
 - **manifest.json** lists each allowed URL, the local path of the cached copy, the SHA-256 hash, and when it was fetched.

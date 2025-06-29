@@ -58,7 +58,7 @@ graph TD
 
 1. **Build a CLI fetcher** that downloads a handful of pages and produces the manifest.
 2. **Write a small Flask or Node server** that serves the repository over HTTP.
-3. **Create an Electron shell** that locks all requests to `http://localhost:PORT`.
+3. **Create an Electron shell** that locks all requests to `http://localhost:PORT` (done).
 4. **Implement basic profiles** with a JSON configuration listing allowed domains.
 
 By following this design basis, the project can evolve from a conceptual idea to a working prototype while maintaining a strict separation from the real Internet.
