@@ -11,7 +11,7 @@ repository/
       images/
         logo.png
   metadata/        # Default log directory (configurable)
-    fetch_log.json     # Records timestamps and fetch status
+    fetch_log.txt      # Records timestamps and fetch status
     server_access.log  # HTTP requests served by the offline server
     approval_requests.log # Soft-allow domain attempts
   profiles/
