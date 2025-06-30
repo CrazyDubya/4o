@@ -18,5 +18,9 @@
     "twitter.com",
     "www.facebook.com"
   ],
+  "blocked_domains": [
+    "bet.example",
+    "adult.example"
+  ],
   "time_limit_minutes": 90
 }

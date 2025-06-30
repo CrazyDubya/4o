@@ -120,7 +120,7 @@ Screenshots are saved under `repository/screenshots/`.
 ## User Profiles
 
 The offline server can enforce a profile of allowed domains, soft-permissive
-domains, and session duration. Start the server with a JSON file defining
+domains, blocked domains, and session duration. Start the server with a JSON file defining
 permissions and a time limit:
 
 ```bash
@@ -168,4 +168,5 @@ See [auditing.md](auditing.md) for details.
 - verify file hashes when serving (done)
 - enforce session time limits from profile (done)
 - expand profiles with soft-allow domains (done)
+- add blocked domain enforcement (done)
 

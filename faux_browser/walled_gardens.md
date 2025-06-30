@@ -30,6 +30,9 @@ A safe browsing environment for young users.
   - `code.org`
   - `scratch.mit.edu`
   - `www.google.com`
+- `blocked_domains`:
+  - `www.facebook.com`
+  - `www.tiktok.com`
 - `time_limit_minutes`: `60`
 
 ### Research Garden (`profiles/research.json`)
@@ -52,6 +55,9 @@ Designed for students or researchers who need reference material.
   - `medium.com`
   - `stackoverflow.com`
   - `reddit.com`
+- `blocked_domains`:
+  - `www.facebook.com`
+  - `twitter.com`
 - `time_limit_minutes`: `180`
 
 ### Library Garden (`profiles/library.json`)
@@ -74,6 +80,9 @@ For shared devices in a community space such as a public library.
   - `www.youtube.com`
   - `twitter.com`
   - `www.facebook.com`
+- `blocked_domains`:
+  - `bet.example`
+  - `adult.example`
 - `time_limit_minutes`: `90`
 
 Each of these gardens illustrates how the faux browser can be tailored for different audiences. The lists remain intentionally conservative and can be expanded as needed. When the offline server starts with one of these profile files, it enforces the domain rules and logs any attempts to visit soft-allow or blocked sites.

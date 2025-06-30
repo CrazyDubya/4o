@@ -19,6 +19,7 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     log_path: Path
     allowed_domains: set[str]
     soft_allow_domains: set[str]
+    blocked_domains: set[str]
     manifest: dict[str, dict]
     session_limit: int | None
     session_start: datetime
@@ -50,8 +51,16 @@ class OfflineHandler(SimpleHTTPRequestHandler):
                 self._log_access()
                 return
         path = self.translate_path(self.path)
-        domain = Path(self.path).parts[1] if self.path.startswith('/pages/') and len(Path(self.path).parts) > 1 else ''
-        if domain and domain not in self.allowed_domains:
+        domain = (
+            Path(self.path).parts[1]
+            if self.path.startswith('/pages/') and len(Path(self.path).parts) > 1
+            else ''
+        )
+        if domain in self.blocked_domains:
+            self.send_response(403)
+            self.end_headers()
+            self.wfile.write(b"Blocked domain")
+        elif domain and domain not in self.allowed_domains:
             self.send_response(403)
             self.end_headers()
             if domain in self.soft_allow_domains:
@@ -102,10 +111,12 @@ def main() -> None:
         profile = json.loads(profile_path.read_text())
         OfflineHandler.allowed_domains = set(profile.get("allowed_domains", []))
         OfflineHandler.soft_allow_domains = set(profile.get("soft_allow_domains", []))
+        OfflineHandler.blocked_domains = set(profile.get("blocked_domains", []))
         OfflineHandler.session_limit = profile.get("time_limit_minutes")
     else:
         OfflineHandler.allowed_domains = set()
         OfflineHandler.soft_allow_domains = set()
+        OfflineHandler.blocked_domains = set()
         OfflineHandler.session_limit = None
     OfflineHandler.session_start = datetime.now(timezone.utc)
 

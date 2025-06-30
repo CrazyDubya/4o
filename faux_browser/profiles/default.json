@@ -1,5 +1,6 @@
 {
   "allowed_domains": ["example.com"],
   "soft_allow_domains": ["www.iana.org"],
+  "blocked_domains": ["bad.example"],
   "time_limit_minutes": 30
 }

@@ -18,5 +18,9 @@
     "stackoverflow.com",
     "reddit.com"
   ],
+  "blocked_domains": [
+    "www.facebook.com",
+    "twitter.com"
+  ],
   "time_limit_minutes": 180
 }
