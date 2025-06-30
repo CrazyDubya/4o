@@ -107,7 +107,10 @@ Pass `--verify` to have the server check each file's SHA-256 against
 `manifest.json`. If the hash does not match, a 500 error is returned.
 The server also tracks how long it has been running and stops responding once
 the user's configured time limit elapses.
-All requests are logged to `repository/metadata/server_access.log` for auditing.
+Logs are written under `repository/metadata` by default. Override this path
+with `--log-dir` if you need to store logs elsewhere.
+All requests are logged to `server_access.log` for auditing and soft-allow
+attempts to `approval_requests.log`.
 ## Screenshot Fetcher
 
 The optional `screenshot_fetcher.py` script uses `pyppeteer` to capture images of the sample domains.
@@ -150,7 +153,8 @@ controls.
 
 ## Logging and Auditing
 
-Activity logs live under `repository/metadata/`:
+Activity logs live under `repository/metadata/` by default (override with
+`--log-dir`):
 
 - `fetch_log.txt` records when pages were downloaded.
 - `server_access.log` stores every offline server request.

@@ -12,5 +12,6 @@
 - [x] Enforce session time limits from user profiles
 - [x] Expand profiles with soft-allow domains for optional approval
 - [x] Log soft-allow domain requests for later review
+- [x] Allow custom log directory for `offline_server.py`
 
 Update this file as tasks are completed to keep the project on track.

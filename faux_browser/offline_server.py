@@ -97,13 +97,17 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8000, help="Port to serve on")
     parser.add_argument("--profile", default="profiles/default.json", help="User profile JSON")
     parser.add_argument("--verify", action="store_true", help="Verify file hashes from manifest")
+    parser.add_argument(
+        "--log-dir",
+        help="Directory for server logs (default: REPO/metadata)",
+    )
     args = parser.parse_args()
 
     repo_path = Path(args.repo).resolve()
     if not repo_path.exists():
         raise SystemExit(f"Repository path {repo_path} does not exist")
 
-    log_dir = repo_path / "metadata"
+    log_dir = Path(args.log_dir).resolve() if args.log_dir else repo_path / "metadata"
     log_dir.mkdir(parents=True, exist_ok=True)
     OfflineHandler.log_path = log_dir / "server_access.log"
     OfflineHandler.approval_log_path = log_dir / "approval_requests.log"
