@@ -20,6 +20,7 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     allowed_domains: set[str]
     soft_allow_domains: set[str]
     blocked_domains: set[str]
+    approval_log_path: Path
     manifest: dict[str, dict]
     session_limit: int | None
     session_start: datetime
@@ -38,6 +39,11 @@ class OfflineHandler(SimpleHTTPRequestHandler):
     def _log_access(self) -> None:
         timestamp = datetime.now(timezone.utc).isoformat()
         with self.log_path.open("a", encoding="utf-8") as log:
+            log.write(f"{timestamp} {self.path}\n")
+
+    def _log_approval_request(self) -> None:
+        timestamp = datetime.now(timezone.utc).isoformat()
+        with self.approval_log_path.open("a", encoding="utf-8") as log:
             log.write(f"{timestamp} {self.path}\n")
 
     def do_GET(self):
@@ -65,6 +71,7 @@ class OfflineHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             if domain in self.soft_allow_domains:
                 self.wfile.write(b"Approval required")
+                self._log_approval_request()
             else:
                 self.wfile.write(b"Access denied")
         elif Path(path).exists():
@@ -99,6 +106,7 @@ def main() -> None:
     log_dir = repo_path / "metadata"
     log_dir.mkdir(parents=True, exist_ok=True)
     OfflineHandler.log_path = log_dir / "server_access.log"
+    OfflineHandler.approval_log_path = log_dir / "approval_requests.log"
 
     manifest_path = repo_path / "manifest.json"
     if args.verify and manifest_path.exists():

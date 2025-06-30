@@ -14,6 +14,8 @@ This document outlines how the faux browser components record activity for later
 - Every HTTP request handled by `offline_server.py` is appended to
   `repository/metadata/server_access.log` with an ISO timestamp and the path
   requested.
+- Attempts to access soft-allow domains are written to
+  `repository/metadata/approval_requests.log` for later review.
 - Missing pages are also logged so you can identify gaps in the repository.
 - When run with `--verify`, the server checks file hashes and notes mismatches.
 

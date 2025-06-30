@@ -13,7 +13,7 @@ Example file `profiles/default.json`:
 }
 ```
 
-`soft_allow_domains` contains sites that are only accessible with approval. The server returns a message instead of content when these domains are requested.
+`soft_allow_domains` contains sites that are only accessible with approval. The server returns a message instead of content when these domains are requested and logs the attempt to `approval_requests.log`.
 
 `blocked_domains` lists sites that are completely forbidden. The server immediately
 denies access to these domains and records the attempt.

@@ -154,6 +154,7 @@ Activity logs live under `repository/metadata/`:
 
 - `fetch_log.txt` records when pages were downloaded.
 - `server_access.log` stores every offline server request.
+- `approval_requests.log` lists attempts to access soft-allow domains.
 
 See [auditing.md](auditing.md) for details.
 
@@ -169,4 +170,5 @@ See [auditing.md](auditing.md) for details.
 - enforce session time limits from profile (done)
 - expand profiles with soft-allow domains (done)
 - add blocked domain enforcement (done)
+- log soft-allow requests for review (done)
 

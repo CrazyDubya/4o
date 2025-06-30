@@ -13,6 +13,7 @@ repository/
   metadata/
     fetch_log.json     # Records timestamps and fetch status
     server_access.log  # HTTP requests served by the offline server
+    approval_requests.log # Soft-allow domain attempts
   profiles/
     default.json       # Example user profile
 electron_frontend/    # Minimal Electron client
@@ -20,7 +21,8 @@ electron_frontend/    # Minimal Electron client
 
 - **manifest.json** lists each allowed URL, the local path of the cached copy, the SHA-256 hash, and when it was fetched.
 - **pages/** holds directories for each domain with sanitized HTML and assets.
-- **metadata/** contains logs produced by the fetcher for audit and troubleshooting.
+  - **metadata/** contains logs produced by the fetcher and server for auditing,
+    including `fetch_log.txt`, `server_access.log`, and `approval_requests.log`.
 - **profiles/** stores JSON files listing allowed domains and time limits for each user.
 - The offline server can optionally verify each file against `manifest.json` when serving content.
 
