@@ -1,0 +1,26 @@
+{
+  "allowed_domains": [
+    "kids.nationalgeographic.com",
+    "pbskids.org",
+    "khanacademy.org",
+    "www.coolmathgames.com",
+    "funbrain.com",
+    "starfall.com",
+    "www.sesamestreet.org",
+    "www.nickjr.com",
+    "nasa.gov",
+    "disneyjunior.com"
+  ],
+  "soft_allow_domains": [
+    "www.youtube.com",
+    "en.wikipedia.org",
+    "code.org",
+    "scratch.mit.edu",
+    "www.google.com"
+  ],
+  "blocked_domains": [
+    "www.facebook.com",
+    "www.tiktok.com"
+  ],
+  "time_limit_minutes": 60
+}
